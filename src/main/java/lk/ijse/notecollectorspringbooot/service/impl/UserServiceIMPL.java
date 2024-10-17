@@ -12,6 +12,7 @@ import lk.ijse.notecollectorspringbooot.exception.UserNotFoundException;
 import lk.ijse.notecollectorspringbooot.service.UserService;
 import lk.ijse.notecollectorspringbooot.util.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -68,5 +69,12 @@ public class UserServiceIMPL implements UserService {
             tmpUser.get().setPassword(userDTO.getPassword());
             tmpUser.get().setProfilePic(userDTO.getProfilePic());
         }
+    }
+
+    @Override
+    public UserDetailsService userDetailService() {
+        return String userName ->
+                userDao.findByEmail(userName)
+                        .orElseThrow(() -> new UserNotFoundException("user with email " + userName + " not found"));
     }
 }

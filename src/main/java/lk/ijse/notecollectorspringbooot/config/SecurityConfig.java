@@ -1,3 +1,4 @@
+/*
 package lk.ijse.notecollectorspringbooot.config;
 
 
@@ -36,8 +37,9 @@ public class SecurityConfig {
         UserDetails prinncipleUser = User.withDefaultPasswordEncoder()
                 .username(username)
                 .password(password)
-                .roles(role
-                ).build();
+                .roles(role)
+                .build();
         return new InMemoryUserDetailsManager(prinncipleUser);
     }
 }
+*/
